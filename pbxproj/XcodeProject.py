@@ -32,7 +32,8 @@ class XcodeProject(PBXGenericObject, ProjectFiles, ProjectFlags, ProjectGroups):
                     comment = obj._get_comment()
                     for file_id in obj['files']:
                         # set the section into the objects
-                        self.objects[file_id]._section = comment
+                        if self.objects[file_id] is not None:
+                            self.objects[file_id]._section = comment
 
     def save(self, path=None):
         if path is None:
